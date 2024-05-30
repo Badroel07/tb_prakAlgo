@@ -1,3 +1,4 @@
+#Bismillah beres Ya Allah
 from datetime import datetime
 import random
 
