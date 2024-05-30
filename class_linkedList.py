@@ -1,5 +1,5 @@
 #Bismillah beres Ya Allah
-from datetime import datetime
+from datetime import datetime, timedelta
 import random
 
 class Node:
@@ -117,7 +117,31 @@ class LinkedList:
             current_node = current_node.next
         if not found:
             print("Data tidak ditemukan.")
+            
+    def ingatkan_donor(self):
+        reminder_date = datetime.now() + timedelta(days=60)
+        current_node = self.head
+        found = False
 
+        print("-------------------------")
+        print("Pengingat Donor Dua Bulan Kedepan :\n")
+        
+        while current_node:
+            last_donor_date = datetime.strptime(current_node.waktu, "%Y-%m-%d")
+            next_donor_date = last_donor_date + timedelta(days=60)
+            if last_donor_date <= reminder_date:
+                found = True
+                print("No ID\t\t\t:", current_node.ID)
+                print("Nama\t\t\t:", current_node.nama)
+                print("Umur\t\t\t:", current_node.umur)
+                print("Golongan darah\t\t:", current_node.gol_darah)
+                print("Waktu terakhir donor\t:", current_node.waktu)
+                print("Tanggal donor berikutnya:", next_donor_date.strftime("%Y-%m-%d"))
+                print("-------------------------")
+            current_node = current_node.next
+
+        if not found:
+            print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
 # Membuat linked list
 linked_list = LinkedList()
 class fitur:
@@ -147,12 +171,13 @@ class fitur:
         print("3. Hapus Data")
         print("4. Cari Data")
         print("5. Tampilkan Riwayat Terbaru")
-        print("6. Keluar")
+        print("6. Ingatkan Donor Dua Bulan Kedepan")
+        print("7. Keluar")
 
 # Program Utama
 while True:
     fitur.tampilkan_menu()
-    pilihan = input("Masukkan pilihan (1/2/3/4/5/6): ")
+    pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7): ")
 
     if pilihan == "1":
         fitur.tambah_data()
@@ -165,6 +190,8 @@ while True:
     elif pilihan == "5":
         linked_list.tampilkan_riwayat_terbaru()
     elif pilihan == "6":
+        linked_list.ingatkan_donor()
+    elif pilihan == "7":
         print("Terima kasih!")
         break
     else:
