@@ -1,4 +1,4 @@
-#Bismillah beres Ya Allah
+# Bismillah beres Ya Allah
 from datetime import datetime, timedelta
 import random
 
@@ -113,11 +113,11 @@ class LinkedList:
                 print("Nama:", current_node.nama)
                 print("Umur:", current_node.umur)
                 print("Golongan Darah:", current_node.gol_darah)
-                print("Waktu Input:", current_node)
+                print("Waktu Input:", current_node.waktu)
             current_node = current_node.next
         if not found:
             print("Data tidak ditemukan.")
-            
+
     def ingatkan_donor(self):
         reminder_date = datetime.now() + timedelta(days=60)
         current_node = self.head
@@ -136,13 +136,13 @@ class LinkedList:
                 print("Umur\t\t\t:", current_node.umur)
                 print("Golongan darah\t\t:", current_node.gol_darah)
                 print("Waktu terakhir donor\t:", current_node.waktu)
-                print("Tanggal donor berikutnya:", next_donor_date.strftime("%Y-%m-%d"))
+                print("Tanggal donor berikutnya\t:", next_donor_date.strftime("%Y-%m-%d"))
                 print("-------------------------")
             current_node = current_node.next
 
         if not found:
-           print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
-            
+            print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
+
     def ubah_data(self, ID, nama_baru=None, umur_baru=None, gol_darah_baru=None):
         current_node = self.head
         while current_node:
@@ -157,6 +157,7 @@ class LinkedList:
                 return
             current_node = current_node.next
         print("Data tidak ditemukan.")
+
 # Membuat linked list
 linked_list = LinkedList()
 class fitur:
@@ -181,15 +182,18 @@ class fitur:
 # Meminta input dari pengguna untuk mengubah data
     def ubah_data():
         ID = input("Masukkan ID yang ingin diubah: ")
-        print("Biarkan kosong jika tidak ingin mengubah.")
-        nama_baru = input("Masukkan nama baru: ")
-        umur_baru = input("Masukkan umur baru: ")
-        gol_darah_baru = input("Masukkan golongan darah baru: ")
-        if umur_baru:
-            umur_baru = int(umur_baru)
-        linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru)
+        if linked_list.cari_data_by_id(ID):
+            print("Biarkan kosong jika tidak ingin mengubah.")
+            nama_baru = input("Masukkan nama baru: ")
+            umur_baru = input("Masukkan umur baru: ")
+            gol_darah_baru = input("Masukkan golongan darah baru: ")
+            if umur_baru:
+                umur_baru = int(umur_baru)
+            linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru)
+        else:
+            print("Data tidak ditemukan.")
 
-# Menampilkan menu
+    # Menampilkan menu
     def tampilkan_menu():
         print("\nPilih operasi yang ingin dilakukan:")
         print("1. Tambah Data")
@@ -200,6 +204,17 @@ class fitur:
         print("6. Ingatkan Donor Dua Bulan Kedepan")
         print("7. Ubah Data Pendonor")
         print("8. Keluar")
+
+# Tambahan: Metode untuk mencari data berdasarkan ID
+def cari_data_by_id(self, ID):
+    current_node = self.head
+    while current_node:
+        if current_node.ID == ID:
+            return True
+        current_node = current_node.next
+    return False
+
+LinkedList.cari_data_by_id = cari_data_by_id
 
 # Program Utama
 while True:
