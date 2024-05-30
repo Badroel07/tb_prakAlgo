@@ -141,7 +141,22 @@ class LinkedList:
             current_node = current_node.next
 
         if not found:
-            print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
+           print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
+            
+    def ubah_data(self, ID, nama_baru=None, umur_baru=None, gol_darah_baru=None):
+        current_node = self.head
+        while current_node:
+            if current_node.ID == ID:
+                if nama_baru:
+                    current_node.nama = nama_baru
+                if umur_baru:
+                    current_node.umur = umur_baru
+                if gol_darah_baru:
+                    current_node.gol_darah = gol_darah_baru
+                print("Data berhasil diubah.")
+                return
+            current_node = current_node.next
+        print("Data tidak ditemukan.")
 # Membuat linked list
 linked_list = LinkedList()
 class fitur:
@@ -163,6 +178,17 @@ class fitur:
         ID = input("Masukkan ID yang ingin dihapus: ")
         linked_list.hapus_data(ID)
 
+# Meminta input dari pengguna untuk mengubah data
+    def ubah_data():
+        ID = input("Masukkan ID yang ingin diubah: ")
+        print("Biarkan kosong jika tidak ingin mengubah.")
+        nama_baru = input("Masukkan nama baru: ")
+        umur_baru = input("Masukkan umur baru: ")
+        gol_darah_baru = input("Masukkan golongan darah baru: ")
+        if umur_baru:
+            umur_baru = int(umur_baru)
+        linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru)
+
 # Menampilkan menu
     def tampilkan_menu():
         print("\nPilih operasi yang ingin dilakukan:")
@@ -172,12 +198,13 @@ class fitur:
         print("4. Cari Data")
         print("5. Tampilkan Riwayat Terbaru")
         print("6. Ingatkan Donor Dua Bulan Kedepan")
-        print("7. Keluar")
+        print("7. Ubah Data Pendonor")
+        print("8. Keluar")
 
 # Program Utama
 while True:
     fitur.tampilkan_menu()
-    pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7): ")
+    pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8): ")
 
     if pilihan == "1":
         fitur.tambah_data()
@@ -192,6 +219,8 @@ while True:
     elif pilihan == "6":
         linked_list.ingatkan_donor()
     elif pilihan == "7":
+        fitur.ubah_data()
+    elif pilihan == "8":
         print("Terima kasih!")
         break
     else:
