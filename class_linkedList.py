@@ -3,12 +3,14 @@ from datetime import datetime, timedelta
 import random
 
 class Node:
-    def __init__(self, nama, umur, gol_darah, waktu, ID):
+    def __init__(self, nama, umur, gol_darah, waktu, ID,gender,alamat):
         self.ID = ID
         self.nama = nama
         self.umur = umur
         self.gol_darah = gol_darah
         self.waktu = waktu
+        self.gender = gender
+        self.alamat = alamat
         self.next = None
 
 class ID_generator:
@@ -28,11 +30,11 @@ class LinkedList:
         self.head = None
         self.head2 = None
 
-    def tambah_data(self, nama, umur, gol_darah):
+    def tambah_data(self, nama, umur, gol_darah,gender,alamat):
         ID_pendonor = ID_generator(id_length=5)
         ID = ID_pendonor.generate_id()
         waktu = datetime.now().strftime("%Y-%m-%d")
-        new_node = Node(nama, umur, gol_darah, waktu, ID)
+        new_node = Node(nama, umur, gol_darah, waktu, ID,gender,alamat)
         if not self.head:
             self.head = new_node
         else:
@@ -45,7 +47,7 @@ class LinkedList:
 
     def riwayat_terbaru(self, new_node):
         waktu = datetime.now().strftime("%Y-%m-%d")
-        baru = Node(new_node.nama, new_node.umur, new_node.gol_darah, waktu, new_node.ID)
+        baru = Node(new_node.nama, new_node.umur, new_node.gol_darah, waktu, new_node.ID,new_node.gender,new_node.alamat)
         if not self.head2:
             self.head2 = baru
         else:
@@ -63,9 +65,11 @@ class LinkedList:
         while current_node:
             print("No ID\t\t\t:", current_node.ID)
             print("Nama\t\t\t:", current_node.nama)
+            print("Jenis kelamin:\t\t\t:", current_node.gender)
             print("Umur\t\t\t:", current_node.umur)
+            print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
-            print("Waktu terakhir donor\t:", current_node.waktu)
+            print("Tanggal bergabung\t:", current_node.waktu)
             print("-------------------------")
             current_node = current_node.next
 
@@ -80,9 +84,11 @@ class LinkedList:
         while current_node:
             print("No ID\t\t\t:", current_node.ID)
             print("Nama\t\t\t:", current_node.nama)
+            print("Jenis kelamin\t\t:", current_node.gender)
             print("Umur\t\t\t:", current_node.umur)
+            print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
-            print("Waktu terakhir donor\t:", current_node.waktu)
+            print("Tanggal bergabung\t:", current_node.waktu)
             print("-------------------------")
             current_node = current_node.next
 
@@ -111,9 +117,11 @@ class LinkedList:
                 found = True
                 print("Data ditemukan:")
                 print("Nama:", current_node.nama)
+                print("Jenis kelamin:", current_node.gender)
                 print("Umur:", current_node.umur)
+                print("Alamat:", current_node.alamat)
                 print("Golongan Darah:", current_node.gol_darah)
-                print("Waktu Input:", current_node.waktu)
+                print("Tanggal bergabung:", current_node.waktu)
             current_node = current_node.next
         if not found:
             print("Data tidak ditemukan.")
@@ -143,14 +151,18 @@ class LinkedList:
         if not found:
             print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
 
-    def ubah_data(self, ID, nama_baru=None, umur_baru=None, gol_darah_baru=None):
+    def ubah_data(self, ID, nama_baru=None, umur_baru=None, gol_darah_baru=None,gender_baru=None,alamat_baru=None):
         current_node = self.head
         while current_node:
             if current_node.ID == ID:
                 if nama_baru:
                     current_node.nama = nama_baru
+                if gender_baru:
+                    current_node.gender = gender_baru
                 if umur_baru:
                     current_node.umur = umur_baru
+                if alamat_baru:
+                    current_node.alamat = alamat_baru
                 if gol_darah_baru:
                     current_node.gol_darah = gol_darah_baru
                 print("Data berhasil diubah.")
@@ -164,9 +176,11 @@ class fitur:
 # Meminta input dari pengguna untuk menambah data
     def tambah_data():
         nama = input("Masukkan nama: ")
+        gender = input("Masukkan jenis kelamin: ")
         umur = int(input("Masukkan umur: "))
+        alamat= input("Masukkan alamat: ")
         gol_darah = input("Masukkan golongan darah: ")
-        linked_list.tambah_data(nama, umur, gol_darah)
+        linked_list.tambah_data(nama, umur, gol_darah,gender,alamat)
         print("Data berhasil ditambahkan.")
 
 # Meminta input dari pengguna untuk mencari data
@@ -185,7 +199,9 @@ class fitur:
         if linked_list.cari_data_by_id(ID):
             print("Biarkan kosong jika tidak ingin mengubah.")
             nama_baru = input("Masukkan nama baru: ")
+            gender_baru = input("Masukkan jenis kelamin: ")
             umur_baru = input("Masukkan umur baru: ")
+            alamat_baru = input("Masukkan alamat baru: ")
             gol_darah_baru = input("Masukkan golongan darah baru: ")
             if umur_baru:
                 umur_baru = int(umur_baru)
