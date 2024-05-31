@@ -1,6 +1,7 @@
-# Bismillah beres Ya Allah
+#Bismillah beres Ya Allah :)
+
 from datetime import datetime, timedelta
-import random
+import random,os,time
 
 class Node:
     def __init__(self, nama, umur, gol_darah, waktu, ID,gender,alamat):
@@ -170,10 +171,10 @@ class LinkedList:
             current_node = current_node.next
         print("Data tidak ditemukan.")
 
-# Membuat linked list
+
 linked_list = LinkedList()
+
 class fitur:
-# Meminta input dari pengguna untuk menambah data
     def tambah_data():
         nama = input("Masukkan nama: ")
         gender = input("Masukkan jenis kelamin: ")
@@ -183,17 +184,14 @@ class fitur:
         linked_list.tambah_data(nama, umur, gol_darah,gender,alamat)
         print("Data berhasil ditambahkan.")
 
-# Meminta input dari pengguna untuk mencari data
     def cari_data():
         nama = input("Masukkan nama yang ingin dicari: ")
         linked_list.cari_data(nama)
 
-# Meminta input dari pengguna untuk menghapus data
     def hapus_data():
         ID = input("Masukkan ID yang ingin dihapus: ")
         linked_list.hapus_data(ID)
 
-# Meminta input dari pengguna untuk mengubah data
     def ubah_data():
         ID = input("Masukkan ID yang ingin diubah: ")
         if linked_list.cari_data_by_id(ID):
@@ -205,11 +203,10 @@ class fitur:
             gol_darah_baru = input("Masukkan golongan darah baru: ")
             if umur_baru:
                 umur_baru = int(umur_baru)
-            linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru)
+            linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru,gender_baru,alamat_baru)
         else:
             print("Data tidak ditemukan.")
 
-    # Menampilkan menu
     def tampilkan_menu():
         print("\nPilih operasi yang ingin dilakukan:")
         print("1. Tambah Data")
@@ -221,7 +218,6 @@ class fitur:
         print("7. Ubah Data Pendonor")
         print("8. Keluar")
 
-# Tambahan: Metode untuk mencari data berdasarkan ID
 def cari_data_by_id(self, ID):
     current_node = self.head
     while current_node:
@@ -231,28 +227,46 @@ def cari_data_by_id(self, ID):
     return False
 
 LinkedList.cari_data_by_id = cari_data_by_id
+def main():
+    os.system('cls')
+    while True:
+        fitur.tampilkan_menu()
+        pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8): ")
 
-# Program Utama
-while True:
-    fitur.tampilkan_menu()
-    pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8): ")
+        if pilihan == "1":
+            os.system('cls')
+            fitur.tambah_data()
+            time.sleep(2)
+            os.system('cls')
+        elif pilihan == "2":
+            os.system('cls')
+            linked_list.tampilkan_data()
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
+            os.system('cls')
+        elif pilihan == "3":
+            fitur.hapus_data()
+            time.sleep(2)
+        elif pilihan == "4":
+            fitur.cari_data()
+            time.sleep(2)
+        elif pilihan == "5":
+            os.system('cls')
+            linked_list.tampilkan_riwayat_terbaru()
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
+            os.system('cls')
+        elif pilihan == "6":
+            linked_list.ingatkan_donor()
+        elif pilihan == "7":
+            fitur.ubah_data()
+        elif pilihan == "8":
+            print("Terima kasih!")
+            break
+        else:
+            print("Pilihan tidak valid. Silakan pilih kembali.")
 
-    if pilihan == "1":
-        fitur.tambah_data()
-    elif pilihan == "2":
-        linked_list.tampilkan_data()
-    elif pilihan == "3":
-        fitur.hapus_data()
-    elif pilihan == "4":
-        fitur.cari_data()
-    elif pilihan == "5":
-        linked_list.tampilkan_riwayat_terbaru()
-    elif pilihan == "6":
-        linked_list.ingatkan_donor()
-    elif pilihan == "7":
-        fitur.ubah_data()
-    elif pilihan == "8":
-        print("Terima kasih!")
-        break
-    else:
-        print("Pilihan tidak valid. Silakan pilih kembali.")
+if __name__ == "__main__":
+    main()
