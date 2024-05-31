@@ -6,7 +6,7 @@ def main():
     os.system('cls')
     while True:
         fitur.tampilkan_menu()
-        pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8): ")
+        pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8/9): ")
 
         if pilihan == "1":
             os.system('cls')
@@ -38,6 +38,9 @@ def main():
         elif pilihan == "7":
             fitur.ubah_data()
         elif pilihan == "8":
+            fitur.update_tanggal_donor()
+            time.sleep(2)
+        elif pilihan == "9":
             print("Terima kasih!")
             break
         else:

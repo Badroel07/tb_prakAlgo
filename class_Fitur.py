@@ -9,7 +9,7 @@ class fitur:
         umur = int(input("Masukkan umur: "))
         alamat= input("Masukkan alamat: ")
         gol_darah = input("Masukkan golongan darah: ")
-        linked_list.tambah_data(nama, umur, gol_darah,gender,alamat)
+        linked_list.tambah_data(nama, umur, gol_darah, gender, alamat)
         print("Data berhasil ditambahkan.")
 
     def cari_data():
@@ -31,7 +31,7 @@ class fitur:
             gol_darah_baru = input("Masukkan golongan darah baru: ")
             if umur_baru:
                 umur_baru = int(umur_baru)
-            linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru,gender_baru,alamat_baru)
+            linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru, gender_baru, alamat_baru)
         else:
             print("Data tidak ditemukan.")
 
@@ -44,7 +44,13 @@ class fitur:
         print("5. Tampilkan Riwayat Terbaru")
         print("6. Ingatkan Donor Dua Bulan Kedepan")
         print("7. Ubah Data Pendonor")
-        print("8. Keluar")
+        print("8. Update Tanggal Terakhir Donor")
+        print("9. Keluar")
+
+    def update_tanggal_donor():
+        ID = input("Masukkan ID pendonor yang ingin diperbarui tanggal terakhir donor darahnya: ")
+        tanggal_baru = input("Masukkan tanggal baru (Format: YYYY-MM-DD): ")
+        linked_list.update_tanggal_donor(ID, tanggal_baru)
 
 def cari_data_by_id(self, ID):
     current_node = self.head
