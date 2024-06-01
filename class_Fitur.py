@@ -7,7 +7,16 @@ linked_list = LinkedList()
 class fitur:
     def tambah_data():
         nama = input("Masukkan nama: ")
-        gender = input("Masukkan jenis kelamin: ")
+        while True:
+            pilih_gender = int(input("Masukkan jenis kelamin ((1)Laki-laki/(2)Perempuan): "))
+            if pilih_gender == 1:
+                gender = "Laki-laki"
+                break
+            elif pilih_gender == 2:
+                gender = "Perempuan"
+                break
+            else:
+                print("Pilihan Anda tidak valid, coba lagi")
         umur = int(input("Masukkan umur: "))
         alamat= input("Masukkan alamat: ")
         gol_darah = input("Masukkan golongan darah: ")
