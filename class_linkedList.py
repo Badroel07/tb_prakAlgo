@@ -35,7 +35,7 @@ class LinkedList:
     def tambah_data(self, nama, umur, gol_darah, gender, alamat):
         ID_pendonor = ID_generator(id_length=5)
         ID = ID_pendonor.generate_id()
-        waktu = datetime.now().strftime("%Y-%m-%d")
+        waktu = datetime.now().strftime("%Y-%m-%d %X")
         new_node = Node(nama, umur, gol_darah, waktu, ID, gender, alamat)
         if not self.head:
             self.head = new_node

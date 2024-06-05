@@ -61,7 +61,7 @@ class fitur:
     def update_tanggal_donor():
         linked_list.tampilkan_data()
         ID = input("Masukkan ID pendonor yang ingin diperbarui tanggal terakhir donor darahnya: ")
-        tanggal_baru = input("Masukkan tanggal baru (Format: YYYY-MM-DD): ")
+        tanggal_baru = datetime.now().strftime("%Y-%m-%d %X")
         linked_list.update_tanggal_donor(ID, tanggal_baru)
 
 def cari_data_by_id(self, ID):

@@ -26,8 +26,13 @@ def main():
             fitur.hapus_data()
             time.sleep(2)
         elif pilihan == "4":
+            os.system('cls')
+            linked_list.tampilkan_data()
             fitur.cari_data()
-            time.sleep(2)
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
+            os.system('cls')
         elif pilihan == "5":
             os.system('cls')
             linked_list.tampilkan_riwayat_terbaru()
@@ -36,7 +41,12 @@ def main():
                 break
             os.system('cls')
         elif pilihan == "6":
+            os.system('cls')
             linked_list.ingatkan_donor()
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
+            os.system('cls')
         elif pilihan == "7":
             fitur.ubah_data()
         elif pilihan == "8":
