@@ -136,7 +136,7 @@ class LinkedList:
         print("Pengingat Donor Dua Bulan Kedepan :\n")
 
         while current_node:
-            last_donor_date = datetime.strptime(current_node.waktu, "%Y-%m-%d")
+            last_donor_date = datetime.strptime(current_node.waktu, "%Y-%m-%d %X")
             next_donor_date = last_donor_date + timedelta(days=60)
             if last_donor_date <= reminder_date:
                 found = True
