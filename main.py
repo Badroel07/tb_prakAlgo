@@ -9,7 +9,6 @@ def main():
     while True:
         fitur.tampilkan_menu()
         pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8/9): ")
-
         if pilihan == "1":
             os.system('cls')
             fitur.tambah_data()
@@ -23,8 +22,13 @@ def main():
                 break
             os.system('cls')
         elif pilihan == "3":
-            fitur.hapus_data()
-            time.sleep(2)
+            os.system('cls')
+            linked_list.tampilkan_data()
+            fitur.hapus_data() 
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break                  
+            os.system('cls')
         elif pilihan == "4":
             os.system('cls')
             linked_list.tampilkan_data()

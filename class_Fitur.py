@@ -40,12 +40,16 @@ class fitur:
         print("Data berhasil ditambahkan.")
 
     def cari_data():
-        nama = input("Masukkan nama yang ingin dicari: ")
-        linked_list.cari_data(nama)
+        node_data = linked_list.head
+        if node_data is not None:
+            nama = input("Masukkan nama yang ingin dicari: ")
+            linked_list.cari_data(nama)
 
     def hapus_data():
-        ID = input("Masukkan ID yang ingin dihapus: ")
-        linked_list.hapus_data(ID)
+        node_data = linked_list.head
+        if node_data is not None:
+            ID = input("Masukkan ID yang ingin dihapus: ")
+            linked_list.hapus_data(ID)
 
     def ubah_data():
         ID = input("Masukkan ID yang ingin diubah: ")
