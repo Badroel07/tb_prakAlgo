@@ -19,7 +19,23 @@ class fitur:
                 print("Pilihan Anda tidak valid, coba lagi")
         umur = int(input("Masukkan umur: "))
         alamat= input("Masukkan alamat: ")
-        gol_darah = input("Masukkan golongan darah: ")
+        while True:
+            goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
+            pilih_goldar = goldar.lower()
+            if pilih_goldar == 'a':
+                gol_darah = 'A'
+                break
+            elif pilih_goldar == 'ab' :
+                gol_darah = 'AB'
+                break
+            elif pilih_goldar == 'b':
+                gol_darah = 'B'
+                break
+            elif pilih_goldar == 'o':
+                gol_darah = 'O'
+                break
+            else:
+                print("Golongan darah yang Anda masukkan tidak ada.")
         linked_list.tambah_data(nama, umur, gol_darah, gender, alamat)
         print("Data berhasil ditambahkan.")
 
