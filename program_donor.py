@@ -77,20 +77,30 @@ class LinkedList:
         current_node = self.head
         if current_node is None:
             print("Data kosong!")
-        else:
-            print("-------------------------")
-            print("Data saat ini :\n")
+            return
 
+        # Gather data in a list
+        data_list = []
         while current_node:
-            print("No ID\t\t\t:", current_node.ID)
-            print("Nama\t\t\t:", current_node.nama)
-            print("Jenis kelamin\t\t:", current_node.gender)
-            print("Umur\t\t\t:", current_node.umur)
-            print("Alamat\t\t\t:", current_node.alamat)
-            print("Golongan darah\t\t:", current_node.gol_darah)
-            print("Terakhir donor darah\t:", current_node.waktu)
-            print("-------------------------")
+            data_list.append(current_node)
             current_node = current_node.next
+
+        # Sort the list by blood type
+        blood_order = {'A': 1, 'B': 2, 'AB': 3, 'O': 4}
+        data_list.sort(key=lambda node: blood_order[node.gol_darah])
+
+        # Display sorted data
+        print("-------------------------")
+        print("Data saat ini :\n")
+        for node in data_list:
+            print("No ID\t\t\t:", node.ID)
+            print("Nama\t\t\t:", node.nama)
+            print("Jenis kelamin\t\t:", node.gender)
+            print("Umur\t\t\t:", node.umur)
+            print("Alamat\t\t\t:", node.alamat)
+            print("Golongan darah\t\t:", node.gol_darah)
+            print("Terakhir donor darah\t:", node.waktu)
+            print("-------------------------")
 
     def hapus_data(self, ID):
         current_node = self.head
