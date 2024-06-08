@@ -34,7 +34,7 @@ class LinkedList:
     def tambah_data(self, nama, umur, gol_darah, gender, alamat):
         ID_pendonor = ID_generator(id_length=5)
         ID = ID_pendonor.generate_id()
-        waktu = datetime.now().strftime("%Y-%m-%d")
+        waktu = datetime.now().strftime("%Y-%m-%d %X")
         new_node = Node(nama, umur, gol_darah, waktu, ID, gender, alamat)
         if not self.head:
             self.head = new_node
@@ -135,7 +135,7 @@ class LinkedList:
         print("Pengingat Donor Dua Bulan Kedepan :\n")
 
         while current_node:
-            last_donor_date = datetime.strptime(current_node.waktu, "%Y-%m-%d")
+            last_donor_date = datetime.strptime(current_node.waktu, "%Y-%m-%d %X")
             next_donor_date = last_donor_date + timedelta(days=60)
             if last_donor_date <= reminder_date:
                 found = True
@@ -187,20 +187,49 @@ linked_list = LinkedList()
 class fitur:
     def tambah_data():
         nama = input("Masukkan nama: ")
-        gender = input("Masukkan jenis kelamin: ")
+        while True:
+            pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
+            if pilih_gender == 1:
+                gender = "Laki-laki"
+                break
+            elif pilih_gender == 2:
+                gender = "Perempuan"
+                break
+            else:
+                print("Pilihan Anda tidak valid, coba lagi")
         umur = int(input("Masukkan umur: "))
         alamat= input("Masukkan alamat: ")
-        gol_darah = input("Masukkan golongan darah: ")
+        while True:
+            goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
+            pilih_goldar = goldar.lower()
+            if pilih_goldar == 'a':
+                gol_darah = 'A'
+                break
+            elif pilih_goldar == 'ab' :
+                gol_darah = 'AB'
+                break
+            elif pilih_goldar == 'b':
+                gol_darah = 'B'
+                break
+            elif pilih_goldar == 'o':
+                gol_darah = 'O'
+                break
+            else:
+                print("Golongan darah yang Anda masukkan tidak ada.")
         linked_list.tambah_data(nama, umur, gol_darah, gender, alamat)
         print("Data berhasil ditambahkan.")
 
     def cari_data():
-        nama = input("Masukkan nama yang ingin dicari: ")
-        linked_list.cari_data(nama)
+        node_data = linked_list.head
+        if node_data is not None:
+            nama = input("Masukkan nama yang ingin dicari: ")
+            linked_list.cari_data(nama)
 
     def hapus_data():
-        ID = input("Masukkan ID yang ingin dihapus: ")
-        linked_list.hapus_data(ID)
+        node_data = linked_list.head
+        if node_data is not None:
+            ID = input("Masukkan ID yang ingin dihapus: ")
+            linked_list.hapus_data(ID)
 
     def ubah_data():
         ID = input("Masukkan ID yang ingin diubah: ")
@@ -230,8 +259,9 @@ class fitur:
         print("9. Keluar")
 
     def update_tanggal_donor():
+        linked_list.tampilkan_data()
         ID = input("Masukkan ID pendonor yang ingin diperbarui tanggal terakhir donor darahnya: ")
-        tanggal_baru = input("Masukkan tanggal baru (Format: YYYY-MM-DD): ")
+        tanggal_baru = datetime.now().strftime("%Y-%m-%d %X")
         linked_list.update_tanggal_donor(ID, tanggal_baru)
 
 def cari_data_by_id(self, ID):
@@ -249,7 +279,6 @@ def main():
     while True:
         fitur.tampilkan_menu()
         pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8/9): ")
-
         if pilihan == "1":
             os.system('cls')
             fitur.tambah_data()
@@ -263,11 +292,21 @@ def main():
                 break
             os.system('cls')
         elif pilihan == "3":
-            fitur.hapus_data()
-            time.sleep(2)
+            os.system('cls')
+            linked_list.tampilkan_data()
+            fitur.hapus_data() 
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break                  
+            os.system('cls')
         elif pilihan == "4":
+            os.system('cls')
+            linked_list.tampilkan_data()
             fitur.cari_data()
-            time.sleep(2)
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
+            os.system('cls')
         elif pilihan == "5":
             os.system('cls')
             linked_list.tampilkan_riwayat_terbaru()
@@ -276,7 +315,12 @@ def main():
                 break
             os.system('cls')
         elif pilihan == "6":
+            os.system('cls')
             linked_list.ingatkan_donor()
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
+            os.system('cls')
         elif pilihan == "7":
             fitur.ubah_data()
         elif pilihan == "8":
