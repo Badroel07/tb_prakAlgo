@@ -96,27 +96,19 @@ class LinkedList:
         current_node = self.head
         if current_node is None:
             print("Data kosong!")
-            return
-
-        data_list = []
-        while current_node:
-            data_list.append(current_node)
-            current_node = current_node.next
-
-        blood_order = {'A': 1, 'B': 2, 'AB': 3, 'O': 4}
-        data_list.sort(key=lambda node: blood_order[node.gol_darah])
-
-        print("-------------------------")
-        print("Data saat ini :\n")
-        for node in data_list:
-            print("No ID\t\t\t:", node.ID)
-            print("Nama\t\t\t:", node.nama)
-            print("Jenis kelamin\t\t:", node.gender)
-            print("Umur\t\t\t:", node.umur)
-            print("Alamat\t\t\t:", node.alamat)
-            print("Golongan darah\t\t:", node.gol_darah)
-            print("Terakhir donor darah\t:", node.waktu)
+        else:
             print("-------------------------")
+            print("Data saat ini :\n")
+        while current_node:
+            print("No ID\t\t\t:", current_node.ID)
+            print("Nama\t\t\t:", current_node.nama)
+            print("Jenis kelamin\t\t:", current_node.gender)
+            print("Umur\t\t\t:", current_node.umur)
+            print("Alamat\t\t\t:", current_node.alamat)
+            print("Golongan darah\t\t:", current_node.gol_darah)
+            print("Terakhir donor darah\t:", current_node.waktu)
+            print("-------------------------")
+            current_node = current_node.next
 
     def hapus_data(self, ID):
         current_node = self.head
@@ -213,16 +205,24 @@ class fitur:
     def tambah_data():
         nama = input("Masukkan nama: ")
         while True:
-            pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
-            if pilih_gender == 1:
-                gender = "Laki-laki"
-                break
-            elif pilih_gender == 2:
-                gender = "Perempuan"
-                break
-            else:
+            try:
+                pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
+                if pilih_gender == 1:
+                    gender = "Laki-laki"
+                    break
+                elif pilih_gender == 2:
+                    gender = "Perempuan"
+                    break
+                else:
+                    print("Pilihan Anda tidak valid, coba lagi")
+            except ValueError:
                 print("Pilihan Anda tidak valid, coba lagi")
-        umur = int(input("Masukkan umur: "))
+        while True:    
+            try:
+                umur = int(input("Masukkan umur: "))
+                break
+            except ValueError:
+                print("Umur yang Anda masukkan tidak valid.")
         alamat= input("Masukkan alamat: ")
         while True:
             goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
@@ -302,20 +302,19 @@ LinkedList.cari_data_by_id = cari_data_by_id
 def main():
     os.system('cls')
     while True:
+        os.system('cls')
         fitur.tampilkan_menu()
-        pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8/9): ")
+        pilihan = input("Masukkan pilihan (1-9): ")
         if pilihan == "1":
             os.system('cls')
             fitur.tambah_data()
             time.sleep(2)
-            os.system('cls')
         elif pilihan == "2":
             os.system('cls')
             linked_list.tampilkan_data()
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "3":
             os.system('cls')
             linked_list.tampilkan_data()
@@ -323,7 +322,6 @@ def main():
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break                  
-            os.system('cls')
         elif pilihan == "4":
             os.system('cls')
             linked_list.tampilkan_data()
@@ -331,21 +329,18 @@ def main():
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "5":
             os.system('cls')
             linked_list.tampilkan_riwayat_terbaru()
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "6":
             os.system('cls')
             linked_list.ingatkan_donor()
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "7":
             fitur.ubah_data()
         elif pilihan == "8":
