@@ -36,14 +36,36 @@ class LinkedList:
         ID = ID_pendonor.generate_id()
         waktu = datetime.now().strftime("%Y-%m-%d %X")
         new_node = Node(nama, umur, gol_darah, waktu, ID, gender, alamat)
-        if not self.head:
+
+        if gol_darah == 'A':
+            # Tambah di awal daftar
+            new_node.next = self.head
             self.head = new_node
-        else:
-            last_node = self.head
-            while last_node.next:
-                last_node = last_node.next
-            last_node.next = new_node
-        # Panggil riwayat_terbaru dengan new_node sebagai parameter
+        elif gol_darah in ['AB', 'B']:
+            # Tambah di tengah daftar
+            if not self.head:
+                self.head = new_node
+            else:
+                prev_node = None
+                current_node = self.head
+                while current_node and current_node.gol_darah == 'A':
+                    prev_node = current_node
+                    current_node = current_node.next
+                new_node.next = current_node
+                if prev_node:
+                    prev_node.next = new_node
+                else:
+                    self.head = new_node
+        else:  # gol_darah == 'O'
+            # Tambah di akhir daftar
+            if not self.head:
+                self.head = new_node
+            else:
+                last_node = self.head
+                while last_node.next:
+                    last_node = last_node.next
+                last_node.next = new_node
+
         self.riwayat_terbaru(new_node)
         
     def riwayat_terbaru(self, new_node):
