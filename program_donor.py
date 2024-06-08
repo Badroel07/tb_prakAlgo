@@ -38,11 +38,9 @@ class LinkedList:
         new_node = Node(nama, umur, gol_darah, waktu, ID, gender, alamat)
 
         if gol_darah == 'A':
-            # Tambah di awal daftar
             new_node.next = self.head
             self.head = new_node
         elif gol_darah in ['AB', 'B']:
-            # Tambah di tengah daftar
             if not self.head:
                 self.head = new_node
             else:
@@ -56,8 +54,7 @@ class LinkedList:
                     prev_node.next = new_node
                 else:
                     self.head = new_node
-        else:  # gol_darah == 'O'
-            # Tambah di akhir daftar
+        else:  
             if not self.head:
                 self.head = new_node
             else:
@@ -101,17 +98,14 @@ class LinkedList:
             print("Data kosong!")
             return
 
-        # Gather data in a list
         data_list = []
         while current_node:
             data_list.append(current_node)
             current_node = current_node.next
 
-        # Sort the list by blood type
         blood_order = {'A': 1, 'B': 2, 'AB': 3, 'O': 4}
         data_list.sort(key=lambda node: blood_order[node.gol_darah])
 
-        # Display sorted data
         print("-------------------------")
         print("Data saat ini :\n")
         for node in data_list:
@@ -208,7 +202,6 @@ class LinkedList:
             if current_node.ID == ID:
                 current_node.waktu = tanggal_baru
                 print("Tanggal terakhir donor darah berhasil diperbarui.")
-                # Panggil riwayat_terbaru dengan node yang diperbarui
                 self.riwayat_terbaru(current_node)
                 return
             current_node = current_node.next
