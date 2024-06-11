@@ -261,10 +261,38 @@ class fitur:
         if linked_list.cari_data_by_id(ID):
             print("Biarkan kosong jika tidak ingin mengubah.")
             nama_baru = input("Masukkan nama baru: ")
-            gender_baru = input("Masukkan jenis kelamin: ")
+            while True:
+                try:
+                    pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
+                    if pilih_gender == 1:
+                        gender_baru = "Laki-laki"
+                        break
+                    elif pilih_gender == 2:
+                        gender_baru = "Perempuan"
+                        break
+                    else:
+                        print("Pilihan Anda tidak valid, coba lagi")
+                except ValueError:
+                    print("Pilihan Anda tidak valid, coba lagi")
             umur_baru = input("Masukkan umur baru: ")
             alamat_baru = input("Masukkan alamat baru: ")
-            gol_darah_baru = input("Masukkan golongan darah baru: ")
+            while True:
+                goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
+                pilih_goldar = goldar.lower()
+                if pilih_goldar == 'a':
+                    gol_darah_baru = 'A'
+                    break
+                elif pilih_goldar == 'ab' :
+                    gol_darah_baru = 'AB'
+                    break
+                elif pilih_goldar == 'b':
+                    gol_darah_baru = 'B'
+                    break
+                elif pilih_goldar == 'o':
+                    gol_darah_baru = 'O'
+                    break
+                else:
+                    print("Golongan darah yang Anda masukkan tidak ada.")
             if umur_baru:
                 umur_baru = int(umur_baru)
             linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru, gender_baru, alamat_baru)
