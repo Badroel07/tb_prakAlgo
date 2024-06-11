@@ -74,6 +74,7 @@ class LinkedList:
             self.head2 = baru
 
     def tampilkan_riwayat_terbaru(self):
+        print ("\n==== RIWAYAT TERBARU ====\n")
         current_node = self.head2
         if current_node is None:
             print("Riwayat Terbaru kosong!")
@@ -93,6 +94,7 @@ class LinkedList:
             current_node = current_node.next
 
     def tampilkan_data(self):
+        print ("\n==== DATA SAAT INI ====\n")
         current_node = self.head
         if current_node is None:
             print("Data kosong!")
@@ -145,6 +147,7 @@ class LinkedList:
             print("Data tidak ditemukan.")
 
     def ingatkan_donor(self):
+        print("\n==== INGATKAN DONOR DUA BULAN KEDEPAN ====\n")
         reminder_date = datetime.now() + timedelta(days=60)
         current_node = self.head
         found = False
@@ -162,7 +165,7 @@ class LinkedList:
                 print("Umur\t\t\t:", current_node.umur)
                 print("Golongan darah\t\t:", current_node.gol_darah)
                 print("Waktu terakhir donor\t:", current_node.waktu)
-                print("Tanggal donor berikutnya\t:", next_donor_date.strftime("%Y-%m-%d"))
+                print("Tanggal donor berikutnya:", next_donor_date.strftime("%Y-%m-%d"))
                 print("-------------------------")
             current_node = current_node.next
 
@@ -170,6 +173,7 @@ class LinkedList:
             print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
 
     def ubah_data(self, ID, nama_baru=None, umur_baru=None, gol_darah_baru=None, gender_baru=None, alamat_baru=None):
+        print("\n==== UBAH DATA PENDONOR ====\n")
         current_node = self.head
         while current_node:
             if current_node.ID == ID:
@@ -189,6 +193,7 @@ class LinkedList:
         print("Data tidak ditemukan.")
 
     def update_tanggal_donor(self, ID, tanggal_baru):
+        print ("\n==== UPDATE TANGGAL TERAKHIR DONOR ====\n")
         current_node = self.head
         while current_node:
             if current_node.ID == ID:
@@ -203,6 +208,7 @@ linked_list = LinkedList()
 
 class fitur:
     def tambah_data():
+        print ("\n==== TAMBAH DATA BARU ====\n")
         nama = input("Masukkan nama: ")
         while True:
             try:
@@ -300,6 +306,8 @@ class fitur:
             print("Data tidak ditemukan.")
 
     def tampilkan_menu():
+        print("\n==== PROGRAM MANAJEMEN DATA DONOR DARAH ====")
+        print("==============================================")
         print("\nPilih operasi yang ingin dilakukan:")
         print("1. Tambah Data")
         print("2. Tampilkan Data")
@@ -370,8 +378,11 @@ def main():
             if a == '\n':
                 break
         elif pilihan == "7":
+            os.system('cls')
+            linked_list.tampilkan_data()
             fitur.ubah_data()
         elif pilihan == "8":
+            os.system('cls')
             fitur.update_tanggal_donor()
             time.sleep(2)
         elif pilihan == "9":
