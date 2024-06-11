@@ -79,7 +79,7 @@ class LinkedList:
         if current_node is None:
             print("Riwayat Terbaru kosong!")
         else:
-            print("-------------------------")
+            print("---------------------------------------------")
             print("Riwayat Terbaru :\n")
 
         while current_node:
@@ -90,16 +90,15 @@ class LinkedList:
             print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
             print("Terakhir donor darah\t:", current_node.waktu)
-            print("-------------------------")
+            print("---------------------------------------------")
             current_node = current_node.next
 
     def tampilkan_data(self):
-        print ("\n==== DATA SAAT INI ====\n")
         current_node = self.head
         if current_node is None:
             print("Data kosong!")
         else:
-            print("-------------------------")
+            print("---------------------------------------------")
             print("Data saat ini :\n")
         while current_node:
             print("No ID\t\t\t:", current_node.ID)
@@ -109,7 +108,7 @@ class LinkedList:
             print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
             print("Terakhir donor darah\t:", current_node.waktu)
-            print("-------------------------")
+            print("---------------------------------------------")
             current_node = current_node.next
 
     def hapus_data(self, ID):
@@ -152,7 +151,7 @@ class LinkedList:
         current_node = self.head
         found = False
 
-        print("-------------------------")
+        print("----------------------------------------------\t")
         print("Pengingat Donor Dua Bulan Kedepan :\n")
 
         while current_node:
@@ -166,14 +165,13 @@ class LinkedList:
                 print("Golongan darah\t\t:", current_node.gol_darah)
                 print("Waktu terakhir donor\t:", current_node.waktu)
                 print("Tanggal donor berikutnya:", next_donor_date.strftime("%Y-%m-%d"))
-                print("-------------------------")
+                print("----------------------------------------------\t")
             current_node = current_node.next
 
         if not found:
             print("Tidak ada pendonor yang perlu diingatkan untuk donor dalam dua bulan ke depan.")
 
     def ubah_data(self, ID, nama_baru=None, umur_baru=None, gol_darah_baru=None, gender_baru=None, alamat_baru=None):
-        print("\n==== UBAH DATA PENDONOR ====\n")
         current_node = self.head
         while current_node:
             if current_node.ID == ID:
@@ -187,13 +185,11 @@ class LinkedList:
                     current_node.alamat = alamat_baru
                 if gol_darah_baru:
                     current_node.gol_darah = gol_darah_baru
-                print("Data berhasil diubah.")
                 return
             current_node = current_node.next
         print("Data tidak ditemukan.")
 
     def update_tanggal_donor(self, ID, tanggal_baru):
-        print ("\n==== UPDATE TANGGAL TERAKHIR DONOR ====\n")
         current_node = self.head
         while current_node:
             if current_node.ID == ID:
@@ -263,51 +259,72 @@ class fitur:
             linked_list.hapus_data(ID)
 
     def ubah_data():
-        ID = input("Masukkan ID yang ingin diubah: ")
-        if linked_list.cari_data_by_id(ID):
-            print("Biarkan kosong jika tidak ingin mengubah.")
-            nama_baru = input("Masukkan nama baru: ")
-            while True:
-                try:
-                    pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
-                    if pilih_gender == 1:
-                        gender_baru = "Laki-laki"
+        flag = 0
+        while True:
+            if flag == 1:
+                break
+            ID = input("Masukkan ID yang ingin diubah: ")  
+            if linked_list.cari_data_by_id(ID):
+                nama_baru = input("Masukkan nama baru: ")
+                while True:
+                    try:
+                        pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
+                        if pilih_gender == 1:
+                            gender_baru = "Laki-laki"
+                            break
+                        elif pilih_gender == 2:
+                            gender_baru = "Perempuan"
+                            break
+                        else:
+                            print("Pilihan Anda tidak valid, coba lagi")
+                    except ValueError:
+                        print("Pilihan Anda tidak valid, coba lagi")
+                umur_baru = input("Masukkan umur baru: ")
+                alamat_baru = input("Masukkan alamat baru: ")
+                while True:
+                    goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
+                    pilih_goldar = goldar.lower()
+                    if pilih_goldar == 'a':
+                        gol_darah_baru = 'A'
                         break
-                    elif pilih_gender == 2:
-                        gender_baru = "Perempuan"
+                    elif pilih_goldar == 'ab' :
+                        gol_darah_baru = 'AB'
+                        break
+                    elif pilih_goldar == 'b':
+                        gol_darah_baru = 'B'
+                        break
+                    elif pilih_goldar == 'o':
+                        gol_darah_baru = 'O'
                         break
                     else:
-                        print("Pilihan Anda tidak valid, coba lagi")
-                except ValueError:
-                    print("Pilihan Anda tidak valid, coba lagi")
-            umur_baru = input("Masukkan umur baru: ")
-            alamat_baru = input("Masukkan alamat baru: ")
-            while True:
-                goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
-                pilih_goldar = goldar.lower()
-                if pilih_goldar == 'a':
-                    gol_darah_baru = 'A'
-                    break
-                elif pilih_goldar == 'ab' :
-                    gol_darah_baru = 'AB'
-                    break
-                elif pilih_goldar == 'b':
-                    gol_darah_baru = 'B'
-                    break
-                elif pilih_goldar == 'o':
-                    gol_darah_baru = 'O'
-                    break
-                else:
-                    print("Golongan darah yang Anda masukkan tidak ada.")
-            if umur_baru:
-                umur_baru = int(umur_baru)
-            linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru, gender_baru, alamat_baru)
-        else:
-            print("Data tidak ditemukan.")
-
+                        print("Golongan darah yang Anda masukkan tidak ada.")
+                if umur_baru:
+                    umur_baru = int(umur_baru)
+                linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru, gender_baru, alamat_baru)
+                print("\nData berhasil di ubah!")
+                time.sleep(2)
+                break
+            else:
+                print("Data tidak ditemukan.")
+                while True:
+                    try:
+                        konfirm = int(input("1. Ganti ID yang akan diubah\n2. Kembali ke Menu Utama\nPilihan : "))
+                        if konfirm == 1:
+                            os.system('cls')
+                            linked_list.tampilkan_data()
+                            break
+                        elif konfirm == 2:
+                            flag = 1
+                            break
+                        else:
+                            print("Pilihan Anda tidak valid")
+                    except ValueError:
+                        print("Pilihan Anda tidak valid")
+                    
+                
     def tampilkan_menu():
         print("\n==== PROGRAM MANAJEMEN DATA DONOR DARAH ====")
-        print("==============================================")
+        print("============================================")
         print("\nPilih operasi yang ingin dilakukan:")
         print("1. Tambah Data")
         print("2. Tampilkan Data")
