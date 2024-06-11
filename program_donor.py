@@ -127,18 +127,22 @@ class LinkedList:
             current_node = current_node.next
         if current_node is None:
             flag = 2
+            os.system('cls')
             print("Data tidak ditemukan.")
             return
         prev.next = current_node.next
         current_node = None
 
     def cari_data(self, nama):
+        global flag
         found = False
         current_node = self.head
+        os.system('cls')
         while current_node:
-            if nama.lower() in current_node.nama.lower():
+            if current_node.nama.lower().startswith(nama.lower()):
                 found = True
                 print("Data ditemukan:")
+                print("---------------------------")
                 print("Nama:", current_node.nama)
                 print("Jenis kelamin:", current_node.gender)
                 print("Umur:", current_node.umur)
@@ -147,6 +151,7 @@ class LinkedList:
                 print("Terakhir donor darah:", current_node.waktu)
             current_node = current_node.next
         if not found:
+            flag = 2
             print("Data tidak ditemukan.")
 
     def ingatkan_donor(self):
@@ -191,6 +196,7 @@ class LinkedList:
                     current_node.gol_darah = gol_darah_baru
                 return
             current_node = current_node.next
+        os.system('cls')
         print("Data tidak ditemukan.")
 
     def update_tanggal_donor(self, ID, tanggal_baru):
@@ -202,7 +208,6 @@ class LinkedList:
                 self.riwayat_terbaru(current_node)
                 return
             current_node = current_node.next
-        print("Data tidak ditemukan.")
 
 linked_list = LinkedList()
 
@@ -248,13 +253,39 @@ class fitur:
             else:
                 print("Golongan darah yang Anda masukkan tidak ada.")
         linked_list.tambah_data(nama, umur, gol_darah, gender, alamat)
-        print("Data berhasil ditambahkan.")
+        print("-----------------------\nData berhasil ditambahkan.")
 
     def cari_data():
-        node_data = linked_list.head
-        if node_data is not None:
-            nama = input("Masukkan nama yang ingin dicari: ")
-            linked_list.cari_data(nama)
+        global flag
+        flag = 0
+        while True:
+            if flag == 1:
+                break
+            node_data = linked_list.head
+            if node_data is not None:
+                while True:
+                    nama = input("Masukkan nama yang ingin dicari: ")
+                    linked_list.cari_data(nama)
+                    if flag == 2:
+                        try:
+                            konfirm = int(input("1. Ganti nama yang akan dicari\n2. Kembali ke Menu Utama\nPilihan : "))
+                            if konfirm == 1:
+                                flag = 0
+                                os.system('cls')
+                                linked_list.tampilkan_data()
+                                break
+                            elif konfirm == 2:
+                                flag = 1
+                                break
+                            else:
+                                print("Pilihan Anda tidak valid")
+                        except ValueError:
+                            print("Pilihan Anda tidak valid")
+                    else:
+                        flag = 1
+                        break
+            else:
+                break
 
     def hapus_data():
         global flag
@@ -294,64 +325,68 @@ class fitur:
         while True:
             if flag == 1:
                 break
-            ID = input("Masukkan ID yang ingin diubah: ")  
-            if linked_list.cari_data_by_id(ID):
-                nama_baru = input("Masukkan nama baru: ")
-                while True:
-                    try:
-                        pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
-                        if pilih_gender == 1:
-                            gender_baru = "Laki-laki"
-                            break
-                        elif pilih_gender == 2:
-                            gender_baru = "Perempuan"
-                            break
-                        else:
+            node_data = linked_list.head
+            if node_data is not None:
+                ID = input("Masukkan ID yang ingin diubah: ")  
+                if linked_list.cari_data_by_id(ID):
+                    nama_baru = input("Masukkan nama baru: ")
+                    while True:
+                        try:
+                            pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
+                            if pilih_gender == 1:
+                                gender_baru = "Laki-laki"
+                                break
+                            elif pilih_gender == 2:
+                                gender_baru = "Perempuan"
+                                break
+                            else:
+                                print("Pilihan Anda tidak valid, coba lagi")
+                        except ValueError:
                             print("Pilihan Anda tidak valid, coba lagi")
-                    except ValueError:
-                        print("Pilihan Anda tidak valid, coba lagi")
-                umur_baru = input("Masukkan umur baru: ")
-                alamat_baru = input("Masukkan alamat baru: ")
-                while True:
-                    goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
-                    pilih_goldar = goldar.lower()
-                    if pilih_goldar == 'a':
-                        gol_darah_baru = 'A'
-                        break
-                    elif pilih_goldar == 'ab' :
-                        gol_darah_baru = 'AB'
-                        break
-                    elif pilih_goldar == 'b':
-                        gol_darah_baru = 'B'
-                        break
-                    elif pilih_goldar == 'o':
-                        gol_darah_baru = 'O'
-                        break
-                    else:
-                        print("Golongan darah yang Anda masukkan tidak ada.")
-                if umur_baru:
-                    umur_baru = int(umur_baru)
-                linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru, gender_baru, alamat_baru)
-                print("\nData berhasil di ubah!")
-                time.sleep(2)
-                break
-            else:
-                print("Data tidak ditemukan.")
-                while True:
-                    try:
-                        konfirm = int(input("1. Ganti ID yang akan diubah\n2. Kembali ke Menu Utama\nPilihan : "))
-                        if konfirm == 1:
-                            os.system('cls')
-                            linked_list.tampilkan_data()
+                    umur_baru = input("Masukkan umur baru: ")
+                    alamat_baru = input("Masukkan alamat baru: ")
+                    while True:
+                        goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
+                        pilih_goldar = goldar.lower()
+                        if pilih_goldar == 'a':
+                            gol_darah_baru = 'A'
                             break
-                        elif konfirm == 2:
-                            flag = 1
+                        elif pilih_goldar == 'ab' :
+                            gol_darah_baru = 'AB'
+                            break
+                        elif pilih_goldar == 'b':
+                            gol_darah_baru = 'B'
+                            break
+                        elif pilih_goldar == 'o':
+                            gol_darah_baru = 'O'
                             break
                         else:
+                            print("Golongan darah yang Anda masukkan tidak ada.")
+                    if umur_baru:
+                        umur_baru = int(umur_baru)
+                    linked_list.ubah_data(ID, nama_baru, umur_baru, gol_darah_baru, gender_baru, alamat_baru)
+                    print("\nData berhasil di ubah!")
+                    time.sleep(2)
+                    break
+                else:
+                    os.system('cls')
+                    print("Data tidak ditemukan.")
+                    while True:
+                        try:
+                            konfirm = int(input("1. Ganti ID yang akan diubah\n2. Kembali ke Menu Utama\nPilihan : "))
+                            if konfirm == 1:
+                                os.system('cls')
+                                linked_list.tampilkan_data()
+                                break
+                            elif konfirm == 2:
+                                flag = 1
+                                break
+                            else:
+                                print("Pilihan Anda tidak valid")
+                        except ValueError:
                             print("Pilihan Anda tidak valid")
-                    except ValueError:
-                        print("Pilihan Anda tidak valid")
-                    
+            else:
+                break       
                 
     def tampilkan_menu():
         print("\n==== PROGRAM MANAJEMEN DATA DONOR DARAH ====")
@@ -402,32 +437,35 @@ def main():
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.hapus_data() 
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break                  
         elif pilihan == "4":
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.cari_data()
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "5":
             os.system('cls')
             linked_list.tampilkan_riwayat_terbaru()
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "6":
             os.system('cls')
             linked_list.ingatkan_donor()
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "7":
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.ubah_data()
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
         elif pilihan == "8":
             os.system('cls')
             fitur.update_tanggal_donor()
