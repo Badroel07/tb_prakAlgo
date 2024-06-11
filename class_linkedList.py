@@ -37,14 +37,33 @@ class LinkedList:
         ID = ID_pendonor.generate_id()
         waktu = datetime.now().strftime("%Y-%m-%d %X")
         new_node = Node(nama, umur, gol_darah, waktu, ID, gender, alamat)
-        if not self.head:
+
+        if gol_darah == 'A':
+            new_node.next = self.head
             self.head = new_node
-        else:
-            last_node = self.head
-            while last_node.next:
-                last_node = last_node.next
-            last_node.next = new_node
-        # Panggil riwayat_terbaru dengan new_node sebagai parameter
+        elif gol_darah in ['AB', 'B']:
+            if not self.head:
+                self.head = new_node
+            else:
+                prev_node = None
+                current_node = self.head
+                while current_node and current_node.gol_darah == 'A':
+                    prev_node = current_node
+                    current_node = current_node.next
+                new_node.next = current_node
+                if prev_node:
+                    prev_node.next = new_node
+                else:
+                    self.head = new_node
+        else:  
+            if not self.head:
+                self.head = new_node
+            else:
+                last_node = self.head
+                while last_node.next:
+                    last_node = last_node.next
+                last_node.next = new_node
+
         self.riwayat_terbaru(new_node)
         
     def riwayat_terbaru(self, new_node):
@@ -56,11 +75,12 @@ class LinkedList:
             self.head2 = baru
 
     def tampilkan_riwayat_terbaru(self):
+        print ("\n==== RIWAYAT TERBARU ====\n")
         current_node = self.head2
         if current_node is None:
             print("Riwayat Terbaru kosong!")
         else:
-            print("-------------------------")
+            print("---------------------------------------------")
             print("Riwayat Terbaru :\n")
 
         while current_node:
@@ -71,7 +91,7 @@ class LinkedList:
             print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
             print("Terakhir donor darah\t:", current_node.waktu)
-            print("-------------------------")
+            print("---------------------------------------------")
             current_node = current_node.next
 
     def tampilkan_data(self):
@@ -79,9 +99,8 @@ class LinkedList:
         if current_node is None:
             print("Data kosong!")
         else:
-            print("-------------------------")
+            print("---------------------------------------------")
             print("Data saat ini :\n")
-
         while current_node:
             print("No ID\t\t\t:", current_node.ID)
             print("Nama\t\t\t:", current_node.nama)
@@ -90,10 +109,11 @@ class LinkedList:
             print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
             print("Terakhir donor darah\t:", current_node.waktu)
-            print("-------------------------")
+            print("---------------------------------------------")
             current_node = current_node.next
 
     def hapus_data(self, ID):
+        global flag
         current_node = self.head
         if current_node and current_node.ID == ID:
             self.head = current_node.next
@@ -105,18 +125,23 @@ class LinkedList:
             prev = current_node
             current_node = current_node.next
         if current_node is None:
+            flag = 2
+            os.system('cls')
             print("Data tidak ditemukan.")
             return
         prev.next = current_node.next
         current_node = None
 
     def cari_data(self, nama):
+        global flag
         found = False
         current_node = self.head
+        os.system('cls')
         while current_node:
-            if nama.lower() in current_node.nama.lower():
+            if current_node.nama.lower().startswith(nama.lower()):
                 found = True
                 print("Data ditemukan:")
+                print("---------------------------")
                 print("Nama:", current_node.nama)
                 print("Jenis kelamin:", current_node.gender)
                 print("Umur:", current_node.umur)
@@ -125,14 +150,16 @@ class LinkedList:
                 print("Terakhir donor darah:", current_node.waktu)
             current_node = current_node.next
         if not found:
+            flag = 2
             print("Data tidak ditemukan.")
 
     def ingatkan_donor(self):
+        print("\n==== INGATKAN DONOR DUA BULAN KEDEPAN ====\n")
         reminder_date = datetime.now() + timedelta(days=60)
         current_node = self.head
         found = False
 
-        print("-------------------------")
+        print("----------------------------------------------\t")
         print("Pengingat Donor Dua Bulan Kedepan :\n")
 
         while current_node:
@@ -145,8 +172,8 @@ class LinkedList:
                 print("Umur\t\t\t:", current_node.umur)
                 print("Golongan darah\t\t:", current_node.gol_darah)
                 print("Waktu terakhir donor\t:", current_node.waktu)
-                print("Tanggal donor berikutnya\t:", next_donor_date.strftime("%Y-%m-%d"))
-                print("-------------------------")
+                print("Tanggal donor berikutnya:", next_donor_date.strftime("%Y-%m-%d"))
+                print("----------------------------------------------\t")
             current_node = current_node.next
 
         if not found:
@@ -166,9 +193,9 @@ class LinkedList:
                     current_node.alamat = alamat_baru
                 if gol_darah_baru:
                     current_node.gol_darah = gol_darah_baru
-                print("Data berhasil diubah.")
                 return
             current_node = current_node.next
+        os.system('cls')
         print("Data tidak ditemukan.")
 
     def update_tanggal_donor(self, ID, tanggal_baru):
@@ -177,8 +204,6 @@ class LinkedList:
             if current_node.ID == ID:
                 current_node.waktu = tanggal_baru
                 print("Tanggal terakhir donor darah berhasil diperbarui.")
-                # Panggil riwayat_terbaru dengan node yang diperbarui
                 self.riwayat_terbaru(current_node)
                 return
             current_node = current_node.next
-        print("Data tidak ditemukan.")

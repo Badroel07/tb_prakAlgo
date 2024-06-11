@@ -7,53 +7,54 @@ import os,time
 def main():
     os.system('cls')
     while True:
+        os.system('cls')
         fitur.tampilkan_menu()
-        pilihan = input("Masukkan pilihan (1/2/3/4/5/6/7/8/9): ")
+        pilihan = input("Masukkan pilihan (1-9): ")
         if pilihan == "1":
             os.system('cls')
             fitur.tambah_data()
             time.sleep(2)
-            os.system('cls')
         elif pilihan == "2":
             os.system('cls')
             linked_list.tampilkan_data()
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "3":
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.hapus_data() 
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break                  
-            os.system('cls')
         elif pilihan == "4":
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.cari_data()
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "5":
             os.system('cls')
             linked_list.tampilkan_riwayat_terbaru()
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "6":
             os.system('cls')
             linked_list.ingatkan_donor()
-            a = input("Tekan enter untuk kembali ke menu utama. . .")
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
-            os.system('cls')
         elif pilihan == "7":
+            os.system('cls')
+            linked_list.tampilkan_data()
             fitur.ubah_data()
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
         elif pilihan == "8":
+            os.system('cls')
             fitur.update_tanggal_donor()
             time.sleep(2)
         elif pilihan == "9":
