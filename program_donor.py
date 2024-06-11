@@ -3,6 +3,8 @@ import random
 import os
 import time
 
+flag = 0
+
 class Node:
     def __init__(self, nama, umur, gol_darah, waktu, ID, gender, alamat):
         self.ID = ID
@@ -112,6 +114,7 @@ class LinkedList:
             current_node = current_node.next
 
     def hapus_data(self, ID):
+        global flag
         current_node = self.head
         if current_node and current_node.ID == ID:
             self.head = current_node.next
@@ -123,6 +126,7 @@ class LinkedList:
             prev = current_node
             current_node = current_node.next
         if current_node is None:
+            flag = 2
             print("Data tidak ditemukan.")
             return
         prev.next = current_node.next
@@ -253,10 +257,37 @@ class fitur:
             linked_list.cari_data(nama)
 
     def hapus_data():
-        node_data = linked_list.head
-        if node_data is not None:
-            ID = input("Masukkan ID yang ingin dihapus: ")
-            linked_list.hapus_data(ID)
+        global flag
+        flag = 0
+        while True:
+            if flag == 1:
+                break
+            node_data = linked_list.head
+            if node_data is not None:
+                while True:
+                        ID = input("Masukkan ID yang ingin dihapus: ")
+                        linked_list.hapus_data(ID)
+                        if flag == 2:
+                            try:
+                                konfirm = int(input("1. Ganti ID yang akan dihapus\n2. Kembali ke Menu Utama\nPilihan : "))
+                                if konfirm == 1:
+                                    flag = 0
+                                    os.system('cls')
+                                    linked_list.tampilkan_data()
+                                    break   
+                                elif konfirm == 2:
+                                    flag = 1
+                                    break
+                                else:
+                                    print("Pilihan Anda tidak valid")    
+                            except ValueError:
+                                print("Pilihan Anda tidak valid")  
+                        else:
+                            flag = 1
+                            break
+            else:
+                break                
+                            
 
     def ubah_data():
         flag = 0
