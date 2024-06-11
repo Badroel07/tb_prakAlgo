@@ -205,10 +205,10 @@ linked_list = LinkedList()
 class fitur:
     def tambah_data():
         print ("\n==== TAMBAH DATA BARU ====\n")
-        nama = input("Masukkan nama: ")
+        nama = input("Masukkan nama\t\t\t\t\t\t: ")
         while True:
             try:
-                pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
+                pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan)\t: "))
                 if pilih_gender == 1:
                     gender = "Laki-laki"
                     break
@@ -221,13 +221,13 @@ class fitur:
                 print("Pilihan Anda tidak valid, coba lagi")
         while True:    
             try:
-                umur = int(input("Masukkan umur: "))
+                umur = int(input("Masukkan umur\t\t\t\t\t\t: "))
                 break
             except ValueError:
                 print("Umur yang Anda masukkan tidak valid.")
-        alamat= input("Masukkan alamat: ")
+        alamat= input("Masukkan alamat\t\t\t\t\t\t: ")
         while True:
-            goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
+            goldar = input("Masukkan golongan darah (A/AB/B/O)\t\t\t: ")
             pilih_goldar = goldar.lower()
             if pilih_goldar == 'a':
                 gol_darah = 'A'
@@ -324,8 +324,7 @@ class fitur:
                 
     def tampilkan_menu():
         print("\n==== PROGRAM MANAJEMEN DATA DONOR DARAH ====")
-        print("============================================")
-        print("\nPilih operasi yang ingin dilakukan:")
+        print("============================================\n")
         print("1. Tambah Data")
         print("2. Tampilkan Data")
         print("3. Hapus Data")
