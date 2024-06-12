@@ -134,7 +134,13 @@ class fitur:
                                 print("Pilihan Anda tidak valid, coba lagi")
                         except ValueError:
                             print("Pilihan Anda tidak valid, coba lagi")
-                    umur_baru = input("Masukkan umur baru: ")
+                    while True:    
+                        try:
+                            umur = int(input("Masukkan umur baru: "))
+                            break
+                        except ValueError:
+                            print("Umur yang Anda masukkan tidak valid.")
+                    umur_baru = umur
                     alamat_baru = input("Masukkan alamat baru: ")
                     while True:
                         goldar = input("Masukkan golongan darah (A/AB/B/O) : ")

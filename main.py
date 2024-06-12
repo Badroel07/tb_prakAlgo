@@ -37,7 +37,7 @@ def main():
         elif pilihan == "5":
             os.system('cls')
             linked_list.tampilkan_riwayat_terbaru()
-            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "6":

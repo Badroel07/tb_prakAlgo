@@ -42,27 +42,23 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
         elif gol_darah in ['AB', 'B']:
-            if not self.head:
+            if not self.head or self.head.gol_darah != 'A':
+                new_node.next = self.head
                 self.head = new_node
             else:
-                prev_node = None
                 current_node = self.head
-                while current_node and current_node.gol_darah == 'A':
-                    prev_node = current_node
+                while current_node.next and current_node.next.gol_darah == 'A':
                     current_node = current_node.next
-                new_node.next = current_node
-                if prev_node:
-                    prev_node.next = new_node
-                else:
-                    self.head = new_node
-        else:  
+                new_node.next = current_node.next
+                current_node.next = new_node
+        else:
             if not self.head:
                 self.head = new_node
             else:
-                last_node = self.head
-                while last_node.next:
-                    last_node = last_node.next
-                last_node.next = new_node
+                current_node = self.head
+                while current_node.next:
+                    current_node = current_node.next
+                current_node.next = new_node
 
         self.riwayat_terbaru(new_node)
         
@@ -115,22 +111,25 @@ class LinkedList:
     def hapus_data(self, ID):
         global flag
         current_node = self.head
+
         if current_node and current_node.ID == ID:
             self.head = current_node.next
             current_node = None
             print("Data berhasil dihapus.")
             return
-        prev = None
-        while current_node and current_node.ID != ID:
-            prev = current_node
+
+        while current_node and current_node.next and current_node.next.ID != ID:
             current_node = current_node.next
-        if current_node is None:
+
+        if current_node is None or current_node.next is None:
             flag = 2
             os.system('cls')
             print("Data tidak ditemukan.")
             return
-        prev.next = current_node.next
-        current_node = None
+
+        next_node = current_node.next.next
+        current_node.next = next_node
+        print("Data berhasil dihapus.")
 
     def cari_data(self, nama):
         global flag
