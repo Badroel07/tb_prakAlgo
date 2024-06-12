@@ -34,38 +34,34 @@ class LinkedList:
         self.head2 = None
 
     def tambah_data(self, nama, umur, gol_darah, gender, alamat):
-        ID_pendonor = ID_generator(id_length=5)
-        ID = ID_pendonor.generate_id()
-        waktu = datetime.now().strftime("%Y-%m-%d %X")
-        new_node = Node(nama, umur, gol_darah, waktu, ID, gender, alamat)
+            ID_pendonor = ID_generator(id_length=5)
+            ID = ID_pendonor.generate_id()
+            waktu = datetime.now().strftime("%Y-%m-%d %X")
+            new_node = Node(nama, umur, gol_darah, waktu, ID, gender, alamat)
 
-        if gol_darah == 'A':
-            new_node.next = self.head
-            self.head = new_node
-        elif gol_darah in ['AB', 'B']:
-            if not self.head:
+            if gol_darah == 'A':
+                new_node.next = self.head
                 self.head = new_node
-            else:
-                prev_node = None
-                current_node = self.head
-                while current_node and current_node.gol_darah == 'A':
-                    prev_node = current_node
-                    current_node = current_node.next
-                new_node.next = current_node
-                if prev_node:
-                    prev_node.next = new_node
-                else:
+            elif gol_darah in ['AB', 'B']:
+                if not self.head or self.head.gol_darah != 'A':
+                    new_node.next = self.head
                     self.head = new_node
-        else:  
-            if not self.head:
-                self.head = new_node
+                else:
+                    current_node = self.head
+                    while current_node.next and current_node.next.gol_darah == 'A':
+                        current_node = current_node.next
+                    new_node.next = current_node.next
+                    current_node.next = new_node
             else:
-                last_node = self.head
-                while last_node.next:
-                    last_node = last_node.next
-                last_node.next = new_node
+                if not self.head:
+                    self.head = new_node
+                else:
+                    current_node = self.head
+                    while current_node.next:
+                        current_node = current_node.next
+                    current_node.next = new_node
 
-        self.riwayat_terbaru(new_node)
+            self.riwayat_terbaru(new_node)
         
     def riwayat_terbaru(self, new_node):
         baru = Node(new_node.nama, new_node.umur, new_node.gol_darah, new_node.waktu, new_node.ID, new_node.gender, new_node.alamat)
