@@ -43,7 +43,7 @@ def main():
         elif pilihan == "6":
             os.system('cls')
             linked_list.ingatkan_donor()
-            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            a = input("\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "7":
