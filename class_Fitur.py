@@ -5,11 +5,11 @@ import shutil
 
 linked_list = LinkedList()
 terminal_size = shutil.get_terminal_size()
-width = terminal_size.columns
+lebar = terminal_size.columns
 
 class fitur:
     def tambah_data():
-        print (" TAMBAH DATA BARU ".center(width, "="))
+        print (" TAMBAH DATA BARU ".center(lebar, "="))
         print("")
         nama = input("Masukkan nama\t\t\t\t\t\t: ")
         while True:
@@ -50,7 +50,8 @@ class fitur:
             else:
                 print("Golongan darah yang Anda masukkan tidak ada.")
         linked_list.tambah_data(nama, umur, gol_darah, gender, alamat)
-        print("-----------------------\nData berhasil ditambahkan.")
+        print("".center(lebar,"-"))
+        print("Data berhasil ditambahkan.")
 
     def cari_data():
         cll.flag = 0
@@ -191,8 +192,8 @@ class fitur:
                 
     def tampilkan_menu():
         print("")
-        print(" PROGRAM MANAJEMEN DATA DONOR DARAH ".center(width, "="))
-        print("".center(width, "="))
+        print(" PROGRAM MANAJEMEN DATA DONOR DARAH ".center(lebar, "="))
+        print("".center(lebar, "="))
         print("")
         print("1. Tambah Data")
         print("2. Tampilkan Data")

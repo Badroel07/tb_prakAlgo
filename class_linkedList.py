@@ -2,7 +2,10 @@
 #Class_LinkedList
 
 from datetime import datetime, timedelta
-import random,os,time
+import random,os,shutil
+
+terminal_size = shutil.get_terminal_size()
+lebar = terminal_size.columns
 
 class Node:
     def __init__(self, nama, umur, gol_darah, waktu, ID, gender, alamat):
@@ -71,12 +74,14 @@ class LinkedList:
             self.head2 = baru
 
     def tampilkan_riwayat_terbaru(self):
-        print ("\n==== RIWAYAT TERBARU ====\n")
+        print("")
+        print(" RIWAYAT TERBARU ".center(lebar,"="))
+        print("")
         current_node = self.head2
         if current_node is None:
             print("Riwayat Terbaru kosong!")
         else:
-            print("---------------------------------------------")
+            print("".center(lebar,"-"))
             print("Riwayat Terbaru :\n")
 
         while current_node:
@@ -87,7 +92,7 @@ class LinkedList:
             print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
             print("Terakhir donor darah\t:", current_node.waktu)
-            print("---------------------------------------------")
+            print("".center(lebar,"-"))
             current_node = current_node.next
 
     def tampilkan_data(self):
@@ -95,7 +100,7 @@ class LinkedList:
         if current_node is None:
             print("Data kosong!")
         else:
-            print("---------------------------------------------")
+            print("".center(lebar, "-"))
             print("Data saat ini :\n")
         while current_node:
             print("No ID\t\t\t:", current_node.ID)
@@ -105,7 +110,7 @@ class LinkedList:
             print("Alamat\t\t\t:", current_node.alamat)
             print("Golongan darah\t\t:", current_node.gol_darah)
             print("Terakhir donor darah\t:", current_node.waktu)
-            print("---------------------------------------------")
+            print("".center(lebar,"-"))
             current_node = current_node.next
 
     def hapus_data(self, ID):
@@ -153,12 +158,14 @@ class LinkedList:
             print("Data tidak ditemukan.")
 
     def ingatkan_donor(self):
-        print("\n==== INGATKAN DONOR DUA BULAN KEDEPAN ====\n")
+        print("")
+        print(" INGATKAN DONOR DUA BULAN KEDEPAN ".center(lebar, "="))
+        print("")
         reminder_date = datetime.now() + timedelta(days=60)
         current_node = self.head
         found = False
 
-        print("----------------------------------------------\t")
+        print("".center(lebar,"-"))
         print("Pengingat Donor Dua Bulan Kedepan :\n")
 
         while current_node:
@@ -172,7 +179,7 @@ class LinkedList:
                 print("Golongan darah\t\t:", current_node.gol_darah)
                 print("Waktu terakhir donor\t:", current_node.waktu)
                 print("Tanggal donor berikutnya:", next_donor_date.strftime("%Y-%m-%d"))
-                print("----------------------------------------------\t")
+                print("".center(lebar,"-"))
             current_node = current_node.next
 
         if not found:
