@@ -1,12 +1,16 @@
 #Class_Fitur
 from class_linkedList import *
 import class_linkedList as cll
+import shutil
 
 linked_list = LinkedList()
+terminal_size = shutil.get_terminal_size()
+width = terminal_size.columns
 
 class fitur:
     def tambah_data():
-        print ("\n==== TAMBAH DATA BARU ====\n")
+        print (" TAMBAH DATA BARU ".center(width, "="))
+        print("")
         nama = input("Masukkan nama\t\t\t\t\t\t: ")
         while True:
             try:
@@ -180,8 +184,10 @@ class fitur:
                 break       
                 
     def tampilkan_menu():
-        print("\n==== PROGRAM MANAJEMEN DATA DONOR DARAH ====")
-        print("============================================\n")
+        print("")
+        print(" PROGRAM MANAJEMEN DATA DONOR DARAH ".center(width, "="))
+        print("".center(width, "="))
+        print("")
         print("1. Tambah Data")
         print("2. Tampilkan Data")
         print("3. Hapus Data")
@@ -193,13 +199,40 @@ class fitur:
         print("9. Keluar")
 
     def update_tanggal_donor():
-        linked_list.tampilkan_data()
-        ID = input("Masukkan ID pendonor yang ingin diperbarui tanggal terakhir donor darahnya: ")
-        tanggal_baru = datetime.now().strftime("%Y-%m-%d %X")
-        linked_list.update_tanggal_donor(ID, tanggal_baru)
+        flag = 0
+        while True:
+            if flag == 1:
+                break
+            node_data = linked_list.head
+            if node_data is not None:
+                ID = input("Masukkan ID pendonor yang ingin diperbarui tanggal terakhir donor darahnya: ")
+                if linked_list.cari_data_by_id(ID):
+                    tanggal_baru = datetime.now().strftime("%Y-%m-%d %X")
+                    linked_list.update_tanggal_donor(ID, tanggal_baru)
+                    time.sleep(2)
+                    break
+                else:
+                    os.system('cls')
+                    print("Data tidak ditemukan.")
+                    while True:
+                        try:
+                            konfirm = int(input("1. Ganti ID yang akan diubah\n2. Kembali ke Menu Utama\nPilihan : "))
+                            if konfirm == 1:
+                                os.system('cls')
+                                linked_list.tampilkan_data()
+                                break
+                            elif konfirm == 2:
+                                flag = 1
+                                break
+                            else:
+                                print("Pilihan Anda tidak valid")
+                        except ValueError:
+                            print("Pilihan Anda tidak valid")
+            else:
+                break
 
 def cari_data_by_id(self, ID):
-    current_node = self.head
+    current_node = linked_list.head
     while current_node:
         if current_node.ID == ID:
             return True

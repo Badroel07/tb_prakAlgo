@@ -9,7 +9,7 @@ def main():
     while True:
         os.system('cls')
         fitur.tampilkan_menu()
-        pilihan = input("Masukkan pilihan (1-9): ")
+        pilihan = input("\nMasukkan pilihan (1-9): ")
         if pilihan == "1":
             os.system('cls')
             fitur.tambah_data()
@@ -55,8 +55,11 @@ def main():
                 break
         elif pilihan == "8":
             os.system('cls')
+            linked_list.tampilkan_data()
             fitur.update_tanggal_donor()
-            time.sleep(2)
+            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            if a == '\n':
+                break
         elif pilihan == "9":
             print("Terima kasih!")
             break
