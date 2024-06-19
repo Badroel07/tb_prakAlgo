@@ -6,6 +6,7 @@ import os,time
 
 def main():
     os.system('cls')
+    os.system("color b")
     while True:
         os.system('cls')
         fitur.tampilkan_menu()
@@ -16,12 +17,22 @@ def main():
             time.sleep(2)
         elif pilihan == "2":
             os.system('cls')
+            print("")
+            print("".center(lebar, "="))
+            print(" TAMPILKAN DATA ".center(lebar))
+            print("".center(lebar, "="))
+            print("")
             linked_list.tampilkan_data()
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "3":
             os.system('cls')
+            print("")
+            print("".center(lebar, "="))
+            print(" HAPUS DATA ".center(lebar))
+            print("".center(lebar, "="))
+            print("")
             linked_list.tampilkan_data()
             fitur.hapus_data()
             print("".center(lebar,"-")) 
@@ -30,6 +41,11 @@ def main():
                 break                  
         elif pilihan == "4":
             os.system('cls')
+            print("")
+            print("".center(lebar, "="))
+            print(" CARI DATA ".center(lebar))
+            print("".center(lebar, "="))
+            print("")
             linked_list.tampilkan_data()
             fitur.cari_data()
             print("".center(lebar,"-")) 
@@ -38,18 +54,33 @@ def main():
                 break
         elif pilihan == "5":
             os.system('cls')
+            print("")
+            print("".center(lebar, "="))
+            print(" TAMPILKAN RIWAYAT TERBARU ".center(lebar))
+            print("".center(lebar, "="))
+            print("")
             linked_list.tampilkan_riwayat_terbaru()
             a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "6":
             os.system('cls')
+            print("")
+            print("".center(lebar, "="))
+            print(" INGATKAN DONOR ".center(lebar))
+            print("".center(lebar, "="))
+            print("")
             linked_list.ingatkan_donor()
             a = input("\nTekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "7":
             os.system('cls')
+            print("")
+            print("".center(lebar, "="))
+            print(" UBAH DATA ".center(lebar))
+            print("".center(lebar, "="))
+            print("")
             linked_list.tampilkan_data()
             fitur.ubah_data()
             print("".center(lebar,"-")) 
@@ -58,6 +89,11 @@ def main():
                 break
         elif pilihan == "8":
             os.system('cls')
+            print("")
+            print("".center(lebar, "="))
+            print(" UPDATE TANGGAL DONOR ".center(lebar))
+            print("".center(lebar, "="))
+            print("")
             linked_list.tampilkan_data()
             fitur.update_tanggal_donor()
             print("".center(lebar,"-")) 

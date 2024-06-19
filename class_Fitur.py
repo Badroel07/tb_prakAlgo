@@ -9,12 +9,15 @@ lebar = terminal_size.columns
 
 class fitur:
     def tambah_data():
-        print (" TAMBAH DATA BARU ".center(lebar, "="))
         print("")
-        nama = input("Masukkan nama\t\t\t\t\t\t: ")
+        print("".center(lebar, "="))
+        print (" TAMBAH DATA BARU ".center(lebar))
+        print("".center(lebar, "="))
+        print("")
+        nama = input("MASUKKAN NAMA\t\t\t\t\t\t: ")
         while True:
             try:
-                pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan)\t: "))
+                pilih_gender = int(input("MASUKKAN JENIS KELAMIN ((1) LAKI-LAKI // (2) PEREMPUAN)\t: "))
                 if pilih_gender == 1:
                     gender = "Laki-laki"
                     break
@@ -27,13 +30,13 @@ class fitur:
                 print("Pilihan Anda tidak valid, coba lagi")
         while True:    
             try:
-                umur = int(input("Masukkan umur\t\t\t\t\t\t: "))
+                umur = int(input("MASUKKAN UMUR\t\t\t\t\t\t: "))
                 break
             except ValueError:
                 print("Umur yang Anda masukkan tidak valid.")
-        alamat= input("Masukkan alamat\t\t\t\t\t\t: ")
+        alamat= input("MASUKKAN ALAMAT\t\t\t\t\t\t: ")
         while True:
-            goldar = input("Masukkan golongan darah (A/AB/B/O)\t\t\t: ")
+            goldar = input("MASUKKAN GOLONGAN DARAH (A/AB/B/O)\t\t\t: ")
             pilih_goldar = goldar.lower()
             if pilih_goldar == 'a':
                 gol_darah = 'A'
@@ -125,15 +128,19 @@ class fitur:
             if node_data is not None:
                 ID = input("Masukkan ID yang ingin diubah: ")  
                 if linked_list.cari_data_by_id(ID):
-                    nama_baru = input("Masukkan nama baru: ")
+                    print("Tekan enter jika data tidak ingin diubah.")
+                    nama_baru = input("MASUKKAN NAMA BARU: ")
                     while True:
                         try:
-                            pilih_gender = int(input("Masukkan jenis kelamin ((1) Laki-laki // (2) Perempuan): "))
-                            if pilih_gender == 1:
+                            pilih_gender = input("MASUKKAN JENIS KELAMIN ((1) LAKI-LAKI // (2) PEREMPUAN): ")
+                            if pilih_gender == '1':
                                 gender_baru = "Laki-laki"
                                 break
-                            elif pilih_gender == 2:
+                            elif pilih_gender == '2':
                                 gender_baru = "Perempuan"
+                                break
+                            elif pilih_gender == "":
+                                gender_baru = linked_list.head.gender
                                 break
                             else:
                                 print("Pilihan Anda tidak valid, coba lagi")
@@ -141,14 +148,16 @@ class fitur:
                             print("Pilihan Anda tidak valid, coba lagi")
                     while True:    
                         try:
-                            umur = int(input("Masukkan umur baru: "))
+                            umur = input("MASUKKAN UMUR BARU: ")
+                            if umur == "":
+                                umur = linked_list.head.umur
                             break
                         except ValueError:
                             print("Umur yang Anda masukkan tidak valid.")
-                    umur_baru = umur
-                    alamat_baru = input("Masukkan alamat baru: ")
+                    umur_baru = int(umur)
+                    alamat_baru = input("MASUKKAN ALAMAT BARU: ")
                     while True:
-                        goldar = input("Masukkan golongan darah (A/AB/B/O) : ")
+                        goldar = input("MASUKKAN GOLONGAN DARAH (A/AB/B/O) : ")
                         pilih_goldar = goldar.lower()
                         if pilih_goldar == 'a':
                             gol_darah_baru = 'A'
@@ -161,6 +170,9 @@ class fitur:
                             break
                         elif pilih_goldar == 'o':
                             gol_darah_baru = 'O'
+                            break
+                        elif pilih_goldar == '':
+                            gol_darah_baru = linked_list.head.gol_darah
                             break
                         else:
                             print("Golongan darah yang Anda masukkan tidak ada.")
@@ -192,7 +204,8 @@ class fitur:
                 
     def tampilkan_menu():
         print("")
-        print(" PROGRAM MANAJEMEN DATA DONOR DARAH ".center(lebar, "="))
+        print("".center(lebar, "="))
+        print(" PROGRAM MANAJEMEN DATA DONOR DARAH ".center(lebar))
         print("".center(lebar, "="))
         print("")
         print("1. Tambah Data")

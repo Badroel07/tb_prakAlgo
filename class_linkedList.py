@@ -74,9 +74,6 @@ class LinkedList:
             self.head2 = baru
 
     def tampilkan_riwayat_terbaru(self):
-        print("")
-        print(" RIWAYAT TERBARU ".center(lebar,"="))
-        print("")
         current_node = self.head2
         if current_node is None:
             print("Riwayat Terbaru kosong!")
@@ -158,15 +155,9 @@ class LinkedList:
             print("Data tidak ditemukan.")
 
     def ingatkan_donor(self):
-        print("")
-        print(" INGATKAN DONOR DUA BULAN KEDEPAN ".center(lebar, "="))
-        print("")
         reminder_date = datetime.now() + timedelta(days=60)
         current_node = self.head
         found = False
-
-        print("".center(lebar,"-"))
-        print("Pengingat Donor Dua Bulan Kedepan :\n")
 
         while current_node:
             last_donor_date = datetime.strptime(current_node.waktu, "%Y-%m-%d %X")
