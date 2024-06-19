@@ -1,7 +1,7 @@
 #Class_Fitur
 from class_linkedList import *
 import class_linkedList as cll
-import shutil
+import shutil,time
 
 linked_list = LinkedList()
 terminal_size = shutil.get_terminal_size()
