@@ -23,15 +23,17 @@ def main():
         elif pilihan == "3":
             os.system('cls')
             linked_list.tampilkan_data()
-            fitur.hapus_data() 
-            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            fitur.hapus_data()
+            print("".center(lebar,"-")) 
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break                  
         elif pilihan == "4":
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.cari_data()
-            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            print("".center(lebar,"-")) 
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "5":
@@ -50,14 +52,16 @@ def main():
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.ubah_data()
-            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            print("".center(lebar,"-")) 
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "8":
             os.system('cls')
             linked_list.tampilkan_data()
             fitur.update_tanggal_donor()
-            a = input("--------------------------------------------\nTekan enter untuk kembali ke menu utama. . .")
+            print("".center(lebar,"-")) 
+            a = input("Tekan enter untuk kembali ke menu utama. . .")
             if a == '\n':
                 break
         elif pilihan == "9":
